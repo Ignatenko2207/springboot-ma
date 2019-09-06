@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping()
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userService.save(user);
         if (savedUser != null) {
@@ -26,7 +26,7 @@ public class UserController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping()
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         User updatedUser = userService.update(user);
         if (updatedUser != null) {
@@ -35,7 +35,7 @@ public class UserController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping(path="/get-one/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path="/get-one/{id}")
     public ResponseEntity<User> getOne(@PathVariable Integer id) {
         User userFromDB = userService.findOne(id);
         if (userFromDB != null){
@@ -44,7 +44,7 @@ public class UserController {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping(path="/get-all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path="/get-all")
     public ResponseEntity<List> getAll() {
         List<User> users = userService.findAll();
         return new ResponseEntity(users, HttpStatus.OK);
