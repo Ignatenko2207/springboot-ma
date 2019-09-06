@@ -23,7 +23,7 @@ public class UserController {
         if (savedUser != null) {
             return new ResponseEntity<User>(savedUser, HttpStatus.OK);
         }
-        return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -32,7 +32,7 @@ public class UserController {
         if (updatedUser != null) {
             return new ResponseEntity(updatedUser, HttpStatus.OK);
         }
-        return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping(path="/get-one/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
