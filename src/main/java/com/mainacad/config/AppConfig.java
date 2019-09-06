@@ -1,9 +1,9 @@
 //package com.mainacad.config;
 //
-//import org.itstep.dao.UserDAO;
-//import org.itstep.dao.connection.ConnectionFactory;
-//import org.itstep.dao.connection.H2Factory;
-//import org.itstep.dao.connection.PostgresFactory;
+//import com.mainacad.dao.UserDAO;
+//import com.mainacad.dao.connection.ConnectionFactory;
+//import com.mainacad.dao.connection.H2Factory;
+//import com.mainacad.dao.connection.PostgresFactory;
 //import org.springframework.beans.factory.annotation.Qualifier;
 //import org.springframework.context.annotation.*;
 //import springfox.documentation.swagger2.annotations.EnableSwagger2;
