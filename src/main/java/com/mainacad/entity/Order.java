@@ -2,6 +2,7 @@ package com.mainacad.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -27,6 +29,4 @@ public class Order {
 	@ManyToOne(targetEntity = Cart.class)
 	private Cart cart;
 
-	public Order() {
-	}
 }

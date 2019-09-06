@@ -2,6 +2,7 @@ package com.mainacad.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User{
@@ -36,6 +38,4 @@ public class User{
     @Column(name = "profile", nullable = false)
     private Profile profile;
 
-    public User() {
-    }
 }
