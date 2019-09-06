@@ -15,7 +15,7 @@ import java.util.Properties;
 
 
 @Component
-@Profile("test")
+@Profile("dev")
 public class PostgresFactory implements ConnectionFactory {
 
     public SessionFactory getSessionFactory() {

@@ -42,7 +42,7 @@ public class UserDAOTest {
         assertNotNull(testUser.getId());
 
         userDAO.delete(user);
-        assertNull(userDAO.findOne(testUser.getId()));
+        assertNull(testUser);
     }
 
 

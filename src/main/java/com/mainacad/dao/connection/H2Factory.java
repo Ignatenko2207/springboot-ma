@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Properties;
 
 @Component
-@Profile("dev")
+@Profile("test")
 public class H2Factory implements ConnectionFactory {
 
     public SessionFactory getSessionFactory() {
