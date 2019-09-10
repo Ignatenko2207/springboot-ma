@@ -5,28 +5,21 @@ import com.mainacad.entity.Profile;
 import com.mainacad.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(ApplicationRunner.class)
-@ActiveProfiles("test")
 public class UserDAOTest {
 
     @Autowired
     UserDAO userDAO;
 
     @Test
-    public void getConnectionFactory() {
-        assertNotNull(userDAO.getConnectionFactory());
-        assertTrue(userDAO.getConnectionFactory().getClass().getSimpleName().equals("H2Factory"));
-    }
-
-    @Test
-    public void testSaveAndDelete(){
+    public void testSaveAndGetAndDelete(){
         User user = new User();
         user.setEmail("ignatenko2207@gmail.com");
         user.setFirstName("Alex");
@@ -42,29 +35,10 @@ public class UserDAOTest {
         assertNotNull(testUser.getId());
 
         userDAO.delete(testUser);
-        assertNull(userDAO.findOne(testUser.getId()));
+        Optional<User> userWrapper = userDAO.findById(testUser.getId());
+        assertTrue(userWrapper.isEmpty());
     }
 
-
-    @Test
-    public void testGet(){
-        User user = new User();
-        user.setEmail("ignatenko2207@gmail.com");
-        user.setFirstName("Alex");
-        user.setLastName("Ignatenko");
-        user.setLogin("ignatenko2207");
-        user.setPassword("12345");
-        user.setProfile(Profile.ADMIN);
-
-        User savedUser = userDAO.save(user);
-
-        User testUser = userDAO.findOne(savedUser.getId());
-
-        assertNotNull(testUser);
-        assertNotNull(testUser.getId());
-
-        userDAO.delete(user);
-    }
 
     @Test
     public void testUpdate(){
@@ -76,7 +50,7 @@ public class UserDAOTest {
         user.setPassword("12345");
         user.setProfile(Profile.ADMIN);
 
-        User savedUser = userDAO.save(user);
+        User savedUser = userDAO.saveAndFlush(user);
 
         assertNotNull(savedUser);
 
@@ -89,11 +63,13 @@ public class UserDAOTest {
         modifiedUser.setPassword("new_password");
         modifiedUser.setProfile(Profile.CLIENT);
 
-        User testUser = userDAO.update(modifiedUser);
+        User testUser = userDAO.saveAndFlush(modifiedUser);
 
         assertNotNull(testUser);
 
-        User dbUser = userDAO.findOne(savedUser.getId());
+        Optional<User> userWrapper = userDAO.findById(testUser.getId());
+
+        User dbUser = userWrapper.get();
 
         assertEquals(dbUser.getEmail(), "new_email@gmail.com");
         assertEquals(dbUser.getLogin(), "new_login");
@@ -121,8 +97,8 @@ public class UserDAOTest {
         user2.setPassword("12345");
         user2.setProfile(Profile.ADMIN);
 
-        User savedUser1 = userDAO.save(user1);
-        User savedUser2 = userDAO.save(user2);
+        User savedUser1 = userDAO.saveAndFlush(user1);
+        User savedUser2 = userDAO.saveAndFlush(user2);
 
         List<User> users = userDAO.findAll();
 
