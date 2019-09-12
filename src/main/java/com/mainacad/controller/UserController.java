@@ -42,7 +42,7 @@ public class UserController {
                 return new ResponseEntity(userFromDB, HttpStatus.OK);
             }
         } else {
-            List<User> users = userService.findAll();
+            List users = userService.findAll();
             return new ResponseEntity(users, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
