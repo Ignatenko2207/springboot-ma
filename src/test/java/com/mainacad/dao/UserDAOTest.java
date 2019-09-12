@@ -19,6 +19,49 @@ public class UserDAOTest {
     UserDAO userDAO;
 
     @Test
+    void testFindUserByLoginAndPassword(){
+        User user = new User();
+        user.setEmail("ignatenko2207@gmail.com");
+        user.setFirstName("Alex");
+        user.setLastName("Ignatenko");
+        user.setLogin("ignatenko2207");
+        user.setPassword("12345");
+        user.setProfile(Profile.ADMIN);
+
+        User savedUser = userDAO.save(user);
+        assertNotNull(savedUser);
+
+        List<User> users = userDAO.findAllByLoginAndAndPassword(savedUser.getLogin(), savedUser.getPassword());
+        assertNotNull(users);
+        assertTrue(!users.isEmpty());
+        assertEquals(users.get(0).getEmail(), savedUser.getEmail());
+
+        userDAO.delete(savedUser);
+    }
+
+    @Test
+    void testFindUserSQLQuery(){
+        User user = new User();
+        user.setEmail("ignatenko@gmail.com");
+        user.setFirstName("Alex");
+        user.setLastName("Ignatenko");
+        user.setLogin("ignatenko2207");
+        user.setPassword("12345");
+        user.setProfile(Profile.ADMIN);
+
+        User savedUser = userDAO.save(user);
+        assertNotNull(savedUser);
+
+        List<User> users = userDAO.findAllBySQLQuery(savedUser.getEmail());
+        assertNotNull(users);
+        assertTrue(!users.isEmpty());
+        assertEquals(users.get(0).getEmail(), savedUser.getEmail());
+
+        userDAO.delete(savedUser);
+    }
+
+
+    @Test
     public void testSaveAndGetAndDelete(){
         User user = new User();
         user.setEmail("ignatenko2207@gmail.com");
