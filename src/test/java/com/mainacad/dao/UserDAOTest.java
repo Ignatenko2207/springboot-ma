@@ -31,7 +31,7 @@ public class UserDAOTest {
         User savedUser = userDAO.save(user);
         assertNotNull(savedUser);
 
-        List<User> users = userDAO.findAllByLoginAndAndPassword(savedUser.getLogin(), savedUser.getPassword());
+        List<User> users = userDAO.findAllByLoginAndPassword(savedUser.getLogin(), savedUser.getPassword());
         assertNotNull(users);
         assertTrue(!users.isEmpty());
         assertEquals(users.get(0).getEmail(), savedUser.getEmail());

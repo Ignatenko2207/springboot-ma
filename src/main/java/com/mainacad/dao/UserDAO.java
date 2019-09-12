@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserDAO extends JpaRepository<User, Integer> {
 
-    List<User> findAllByLoginAndAndPassword(String login, String password);
+    List<User> findAllByLoginAndPassword(String login, String password);
 
     @Query(nativeQuery = true, value = "SELECT * FROM users WHERE email=:email")
     List<User> findAllBySQLQuery(String email);

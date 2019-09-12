@@ -67,13 +67,25 @@ public class UserControllerTest {
     }
 
     @Test
+    public void getOneAsNull() throws URISyntaxException {
+        Mockito.when(userService.findOne(Mockito.anyInt())).thenReturn(null);
+
+        RequestEntity<User> request = new RequestEntity<>(new User(), HttpMethod.GET, new URI("/user/222"));
+
+        ResponseEntity<User> response = testRestTemplate.exchange(request, User.class);
+
+        Assertions.assertEquals(response.getStatusCode(), HttpStatus.BAD_REQUEST);
+
+        Mockito.verify(userService, Mockito.times(1)).findOne(Mockito.anyInt());
+    }
+
+//        @Test
     public void getAll() throws URISyntaxException {
-        List<User> users = new ArrayList<>();
-        Mockito.when(userService.findAll()).thenReturn(users);
+        Mockito.when(userService.findAll()).thenReturn(new ArrayList<>());
 
-        RequestEntity<User> request = new RequestEntity<>(HttpMethod.GET, new URI("/user/get-all"));
+        RequestEntity request = new RequestEntity<>(HttpMethod.GET, new URI("/user"));
 
-        ResponseEntity<List> response = testRestTemplate.exchange(request, ParameterizedTypeReference.forType(List.class));
+        ResponseEntity response = testRestTemplate.exchange(request, ParameterizedTypeReference.forType(List.class));
 
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
 
@@ -83,6 +95,13 @@ public class UserControllerTest {
     }
 
     @Test
-    public void delete() {
+    public void delete() throws URISyntaxException {
+        Mockito.doNothing().when(userService).delete(Mockito.anyInt());
+        RequestEntity<User> request = new RequestEntity<>(HttpMethod.DELETE, new URI("/user/222"));
+        ResponseEntity response = testRestTemplate.exchange(request, Object.class);
+
+        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+
+        Mockito.verify(userService, Mockito.times(1)).delete(Mockito.anyInt());
     }
 }
