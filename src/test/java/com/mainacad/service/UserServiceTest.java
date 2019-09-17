@@ -11,6 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(ApplicationRunner.class)
+@ActiveProfiles("json")
 public class UserServiceTest {
 
     @Autowired

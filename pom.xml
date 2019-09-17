@@ -24,7 +24,7 @@
     <maven.compiler.target>11</maven.compiler.target>
     <lombok.version>1.18.8</lombok.version>
     <swagger.version>2.9.2</swagger.version>
-    <mockito.version>1.10.19</mockito.version>
+    <mockito.version>1.10.18</mockito.version>
   </properties>
 
   <dependencies>

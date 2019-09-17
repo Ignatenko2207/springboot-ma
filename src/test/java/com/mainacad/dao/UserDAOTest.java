@@ -5,6 +5,7 @@ import com.mainacad.entity.Profile;
 import com.mainacad.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(ApplicationRunner.class)
+@ActiveProfiles("json")
 public class UserDAOTest {
 
     @Autowired
