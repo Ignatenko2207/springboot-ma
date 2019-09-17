@@ -6,7 +6,7 @@
     <title>Main Page</title>
 </head>
 <body>
-<h1>Hello, this is landing page!!!
+<h1>Your login or password are wrong!!!
 </h1>
 <br>
 <form action="authorization" method="post">

@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public User findOneByLoginAndPassword(String login, String password) {
         List<User> users = userDAO.findAllByLoginAndPassword(login, password);
         if (!users.isEmpty()){
-            users.get(0);
+            return users.get(0);
         }
         return null;
     }
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
     public User findOneByEmail(String email) {
         List<User> users = userDAO.findAllByEmail(email);
         if (!users.isEmpty()){
-            users.get(0);
+            return users.get(0);
         }
         return null;
     }

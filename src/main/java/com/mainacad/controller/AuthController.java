@@ -1,21 +1,30 @@
 package com.mainacad.controller;
 
+import com.mainacad.entity.User;
+import com.mainacad.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller("/authorization")
+@Controller("authorization")
 public class AuthController {
+
+    @Autowired
+    UserService userService;
 
     @PostMapping()
     public String getAuthUser(Model model,
-                              @RequestParam(value="login", required=false) String login,
-                              @RequestParam(value="pass", required=false) String password) {
+                              @RequestParam(value="login") String login,
+                              @RequestParam(value="pass") String password) {
 
-        model.addAttribute("name", "Alex");
-        model.addAttribute("surname", "Ignatenko");
-
-        return "resp";
+        User user = userService.findOneByLoginAndPassword(login, password);
+        if (user != null){
+            model.addAttribute("name", user.getFirstName());
+            model.addAttribute("surname", user.getLastName());
+            return "good-login";
+        }
+        return "wrong-login";
     }
 }
