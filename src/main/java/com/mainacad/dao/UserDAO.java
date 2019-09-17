@@ -11,6 +11,5 @@ public interface UserDAO extends JpaRepository<User, Integer> {
     List<User> findAllByLoginAndPassword(String login, String password);
 
     @Query(nativeQuery = true, value = "SELECT * FROM users WHERE email=:email")
-    List<User> findAllBySQLQuery(String email);
-
+    List<User> findAllByEmail(String email);
 }
