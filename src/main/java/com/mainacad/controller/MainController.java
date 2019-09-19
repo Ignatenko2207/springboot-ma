@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Profile("jsp")
 public class MainController {
 
-    @GetMapping({"/", "/index", "/main"})
+    @GetMapping("/")
     public String getLandingPage() {
         return "authorization";
     }
