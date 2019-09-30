@@ -14,10 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests().antMatchers("/").permitAll()
                 .and()
-                    .formLogin()
-                    .loginPage("/jsp/authorization.jsp")
-                    .failureUrl("/jsp/wrong-login.jsp");
-
+                .authorizeRequests().antMatchers("/actuator").denyAll();
 
     }
 }
