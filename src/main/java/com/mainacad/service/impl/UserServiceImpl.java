@@ -4,7 +4,6 @@ import com.mainacad.dao.UserDAO;
 import com.mainacad.entity.User;
 import com.mainacad.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 
