@@ -60,10 +60,10 @@
     </dependency>
 
     <!--FLYWAY-->
-    <dependency>
-      <groupId>org.flywaydb</groupId>
-      <artifactId>flyway-core</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.flywaydb</groupId>-->
+<!--      <artifactId>flyway-core</artifactId>-->
+<!--    </dependency>-->
 
     <!--SPRING-WEB-->
     <dependency>
